@@ -98,18 +98,21 @@ resource "ibm_is_instance" "instance3" {
 }
 
 resource "ibm_is_floating_ip" "floatingip1" {
-  name = "fip1"
-  target = "${ibm_is_instance.instance1.primary_network_interface.0.id}"
+  count   = "${var.No_of_VSIs}"
+  name = "fip1-${count.index}"
+  target = "${ibm_is_instance.instance1-${count.index}.primary_network_interface.0.id}"
 }
 
 resource "ibm_is_floating_ip" "floatingip2" {
-  name = "fip2"
-  target = "${ibm_is_instance.instance2.primary_network_interface.0.id}"
+  count   = "${var.No_of_VSIs}"
+  name = "fip2-${count.index}"
+  target = "${ibm_is_instance.instance2-${count.index}.primary_network_interface.0.id}"
 }
 
 resource "ibm_is_floating_ip" "floatingip3" {
-  name = "fip3"
-  target = "${ibm_is_instance.instance3.primary_network_interface.0.id}"
+  count   = "${var.No_of_VSIs}"
+  name = "fip3-${count.index}"
+  target = "${ibm_is_instance.instance3-${count.index}.primary_network_interface.0.id}"
 }
 
 resource "ibm_is_security_group_rule" "sg1_tcp_rule_22" {
