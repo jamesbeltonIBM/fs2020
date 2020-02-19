@@ -53,8 +53,8 @@ resource "ibm_is_subnet" "subnet3" {
 }
 
 resource "ibm_is_instance" "instance1" {
-  count   = 3
-  name    = "instance1-$(count.index)"
+  count   = ${No_of_VSIs}
+  name    = "instance1-${count.index}"
   image   = "${var.image}"
   profile = "${var.profile}"
 
@@ -68,8 +68,8 @@ resource "ibm_is_instance" "instance1" {
 }
 
 resource "ibm_is_instance" "instance2" {
-  count   = 3
-  name    = "instance2-$(count.index)"
+  count   = ${No_of_VSIs}
+  name    = "instance2-${count.index}"
   image   = "${var.image}"
   profile = "${var.profile}"
 
@@ -83,8 +83,8 @@ resource "ibm_is_instance" "instance2" {
 }
 
 resource "ibm_is_instance" "instance3" {
-  count   = 3
-  name    = "instance1-$(count.index)"
+  count   = ${No_of_VSIs}
+  name    = "instance1-${count.index}"
   image   = "${var.image}"
   profile = "${var.profile}"
 
