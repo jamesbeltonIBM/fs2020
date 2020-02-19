@@ -52,3 +52,8 @@ variable "profile" {
   default = "cx2-2x4"
   description = "Instance profile to be used for virtual instances"
 }
+
+variable "No_of_VSIs" {
+  default = "1"
+  description = "Number of VSIs to create on each subnet" 
+}
