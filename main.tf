@@ -98,9 +98,9 @@ resource "ibm_is_instance" "instance3" {
 }
 
 resource "ibm_is_floating_ip" "floatingip1" {
-  for_each = toset(var.No_of_VSIs)
-  name = "fip1-"||each.value
-  target = "${ibm_is_instance.instance1-"||each.value||".primary_network_interface.0.id}"
+  count   = "${var.No_of_VSIs}"
+  name = "fip2-${count.index}"
+  target = "${ibm_is_instance.instance1-"||${count.index}||".primary_network_interface.0.id}"
 }
 
 resource "ibm_is_floating_ip" "floatingip2" {
