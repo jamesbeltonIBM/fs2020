@@ -24,25 +24,25 @@ resource "ibm_is_vpc_address_prefix" "vpc-ap3" {
 }
 
 resource "ibm_is_public_gateway" "subnet1-pg" {
-    name = "subnet1-pg"
+    name = "${var.subnet1-pg-name}"
     vpc = "${ibm_is_vpc.vpc1.id}"
     zone = "${var.zone1}"
 }
 
 resource "ibm_is_public_gateway" "subnet2-pg" {
-    name = "subnet2-pg"
+    name = "${var.subnet2-pg-name}"
     vpc = "${ibm_is_vpc.vpc1.id}"
     zone = "${var.zone2}"
 }
 
 resource "ibm_is_public_gateway" "subnet3-pg" {
-    name = "subnet3-pg"
+    name = "${var.subnet3-pg-name}"
     vpc = "${ibm_is_vpc.vpc1.id}"
     zone = "${var.zone3}"
 }
 
 resource "ibm_is_subnet" "subnet1" {
-  name            = "subnet1"
+  name            = "${var.subnet1-name}"
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone1}"
   ipv4_cidr_block = "${var.zone1_cidr}"
@@ -51,7 +51,7 @@ resource "ibm_is_subnet" "subnet1" {
 }
 
 resource "ibm_is_subnet" "subnet2" {
-  name            = "subnet2"
+  name            = "${var.subnet1-name}"
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone2}"
   ipv4_cidr_block = "${var.zone2_cidr}"
@@ -60,7 +60,7 @@ resource "ibm_is_subnet" "subnet2" {
 }
 
 resource "ibm_is_subnet" "subnet3" {
-  name            = "subnet3"
+  name            = "${var.subnet1-name}"
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone3}"
   ipv4_cidr_block = "${var.zone3_cidr}"
