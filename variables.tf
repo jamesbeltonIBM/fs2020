@@ -37,3 +37,33 @@ variable "zone3_cidr" {
   default = "10.30.0.0/24"
   description = "CIDR block to be used for zone 2"
 }
+
+variable "subnet1-name" {
+  default = "fs2021-vpc-lab-sn1"
+  description = "Name to be used for subnet 1"
+}
+
+variable "subnet2-name" {
+  default = "fs2021-vpc-lab-sn2"
+  description = "Name to be used for subnet 2"
+}
+
+variable "subnet3-name" {
+  default = "fs2021-vpc-lab-sn3"
+  description = "Name to be used for subnet 3"
+}
+
+variable "subnet1-pg-name" {
+  default = "fs2021-vpc-sn1-pg"
+  description = "Name to be used for subnet1 public gateway"
+}
+
+variable "subnet2-pg-name" {
+  default = "fs2021-vpc-sn2-pg"
+  description = "Name to be used for subnet2 public gateway"
+}
+
+variable "subnet2-pg-name" {
+  default = "fs2021-vpc-sn2-pg"
+  description = "Name to be used for subnet2 public gateway"
+}
