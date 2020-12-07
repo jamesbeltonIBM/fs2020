@@ -64,6 +64,6 @@ variable "subnet2-pg-name" {
 }
 
 variable "subnet3-pg-name" {
-  default = "fs2021-vpc-sn2-pg"
+  default = "fs2021-vpc-sn3-pg"
   description = "Name to be used for subnet2 public gateway"
 }
