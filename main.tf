@@ -23,26 +23,10 @@ resource "ibm_is_vpc_address_prefix" "vpc-ap3" {
   cidr = "${var.zone3_cidr}"
 }
 
-resource "ibm_is_subnet" "subnet1" {
-  name            = "subnet1"
-  vpc             = "${ibm_is_vpc.vpc1.id}"
-  zone            = "${var.zone1}"
-  ipv4_cidr_block = "${var.zone1_cidr}"
-  depends_on      = ["ibm_is_vpc_address_prefix.vpc-ap1"]
-}
-
 resource "ibm_is_public_gateway" "subnet1-pg" {
     name = "subnet1-pg"
     vpc = "${ibm_is_vpc.vpc1.id}"
     zone = "${var.zone1}"
-}
-
-resource "ibm_is_subnet" "subnet2" {
-  name            = "subnet2"
-  vpc             = "${ibm_is_vpc.vpc1.id}"
-  zone            = "${var.zone2}"
-  ipv4_cidr_block = "${var.zone2_cidr}"
-  depends_on      = ["ibm_is_vpc_address_prefix.vpc-ap2"]
 }
 
 resource "ibm_is_public_gateway" "subnet2-pg" {
@@ -51,18 +35,37 @@ resource "ibm_is_public_gateway" "subnet2-pg" {
     zone = "${var.zone2}"
 }
 
+resource "ibm_is_public_gateway" "subnet3-pg" {
+    name = "subnet3-pg"
+    vpc = "${ibm_is_vpc.vpc1.id}"
+    zone = "${var.zone3}"
+}
+
+resource "ibm_is_subnet" "subnet1" {
+  name            = "subnet1"
+  vpc             = "${ibm_is_vpc.vpc1.id}"
+  zone            = "${var.zone1}"
+  ipv4_cidr_block = "${var.zone1_cidr}"
+  public_gateway  = "${subnet1-pg.id}"
+  depends_on      = ["ibm_is_vpc_address_prefix.vpc-ap1"]
+}
+
+resource "ibm_is_subnet" "subnet2" {
+  name            = "subnet2"
+  vpc             = "${ibm_is_vpc.vpc1.id}"
+  zone            = "${var.zone2}"
+  ipv4_cidr_block = "${var.zone2_cidr}"
+  public_gateway  = "${subnet2-pg.id}"
+  depends_on      = ["ibm_is_vpc_address_prefix.vpc-ap2"]
+}
+
 resource "ibm_is_subnet" "subnet3" {
   name            = "subnet3"
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone3}"
   ipv4_cidr_block = "${var.zone3_cidr}"
+  public_gateway  = "${subnet3-pg.id}"
   depends_on      = ["ibm_is_vpc_address_prefix.vpc-ap3"]
-}
-
-resource "ibm_is_public_gateway" "subnet3-pg" {
-    name = "subnet3-pg"
-    vpc = "${ibm_is_vpc.vpc1.id}"
-    zone = "${var.zone3}"
 }
 
 resource "ibm_is_security_group_rule" "sg1_tcp_rule_22" {
