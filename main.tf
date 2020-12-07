@@ -51,7 +51,7 @@ resource "ibm_is_subnet" "subnet1" {
 }
 
 resource "ibm_is_subnet" "subnet2" {
-  name            = "${var.subnet1-name}"
+  name            = "${var.subnet2-name}"
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone2}"
   ipv4_cidr_block = "${var.zone2_cidr}"
@@ -60,7 +60,7 @@ resource "ibm_is_subnet" "subnet2" {
 }
 
 resource "ibm_is_subnet" "subnet3" {
-  name            = "${var.subnet1-name}"
+  name            = "${var.subnet3-name}"
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone3}"
   ipv4_cidr_block = "${var.zone3_cidr}"
