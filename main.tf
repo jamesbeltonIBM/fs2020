@@ -46,7 +46,7 @@ resource "ibm_is_subnet" "subnet1" {
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone1}"
   ipv4_cidr_block = "${var.zone1_cidr}"
-  public_gateway  = "${subnet1-pg.id}"
+  public_gateway  = "${ibm_is_public_gateway.subnet1-pg.id}"
   depends_on      = ["ibm_is_vpc_address_prefix.vpc-ap1"]
 }
 
@@ -55,7 +55,7 @@ resource "ibm_is_subnet" "subnet2" {
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone2}"
   ipv4_cidr_block = "${var.zone2_cidr}"
-  public_gateway  = "${subnet2-pg.id}"
+  public_gateway  = "${ibm_is_public_gateway.subnet2-pg.id}"
   depends_on      = ["ibm_is_vpc_address_prefix.vpc-ap2"]
 }
 
@@ -64,7 +64,7 @@ resource "ibm_is_subnet" "subnet3" {
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone3}"
   ipv4_cidr_block = "${var.zone3_cidr}"
-  public_gateway  = "${subnet3-pg.id}"
+  public_gateway  = "${ibm_is_public_gateway.subnet3-pg.id}"
   depends_on      = ["ibm_is_vpc_address_prefix.vpc-ap3"]
 }
 
