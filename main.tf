@@ -31,12 +31,24 @@ resource "ibm_is_subnet" "subnet1" {
   depends_on      = ["ibm_is_vpc_address_prefix.vpc-ap1"]
 }
 
+resource "ibm_is_public_gateway" "subnet1-pg" {
+    name = "subnet1-pg"
+    vpc = "${ibm_is_vpc.vpc1.id}"
+    zone = "${var.zone1}"
+}
+
 resource "ibm_is_subnet" "subnet2" {
   name            = "subnet2"
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone2}"
   ipv4_cidr_block = "${var.zone2_cidr}"
   depends_on      = ["ibm_is_vpc_address_prefix.vpc-ap2"]
+}
+
+resource "ibm_is_public_gateway" "subnet2-pg" {
+    name = "subnet2-pg"
+    vpc = "${ibm_is_vpc.vpc1.id}"
+    zone = "${var.zone2}"
 }
 
 resource "ibm_is_subnet" "subnet3" {
@@ -47,6 +59,11 @@ resource "ibm_is_subnet" "subnet3" {
   depends_on      = ["ibm_is_vpc_address_prefix.vpc-ap3"]
 }
 
+resource "ibm_is_public_gateway" "subnet3-pg" {
+    name = "subnet3-pg"
+    vpc = "${ibm_is_vpc.vpc1.id}"
+    zone = "${var.zone3}"
+}
 
 resource "ibm_is_security_group_rule" "sg1_tcp_rule_22" {
   group     = "${ibm_is_vpc.vpc1.default_security_group}"
